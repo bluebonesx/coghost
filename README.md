@@ -24,11 +24,12 @@
 ```ts
 user = {
   name: 'text',
+  pwd: 'text',
   role: 'participant | experimenter | admin',
-  birth: 'date',
-  gender: 'enum',
-  phone: 'text?',
+  gender: 'male | female | unknown',
+  birthday: 'date',
   email: 'text',
+  phone: 'text?',
 };
 task = {
   owner: 'user.id',
@@ -36,40 +37,39 @@ task = {
   desc: 'text',
   type: 'online | offline',
   status: 'pending | publish | archived',
-  dirpath: 'text',
 };
 
 // lab recuritment system
 lab = {
   location: 'text',
 };
-event = {
+task_event = {
   task: 'task.id',
   name: 'text',
   capacity: 'int:2',
   lab: 'lab.id',
-  from: 'date',
-  to: 'date',
+  start_at: 'date',
+  end_at: 'date',
 };
-event_user_rel = {
-  event: 'event.id',
+task_event_user_rel = {
+  event: 'task_event.id',
   user: 'user.id',
   as: 'participant | experimenter | other',
 };
 
 // generate by experimental program
-session = {
+task_session = {
   task: 'task.id',
-  event: 'event.id?',
-  from: 'date',
-  to: 'date?',
+  event: 'task_event.id?',
+  start_at: 'date',
+  end_at: 'date?',
 };
-session_participant_rel = {
-  session: 'session.id',
+task_session_participant_rel = {
+  session: 'task_session.id',
   participant: 'user.id',
 };
-record = {
-  session: 'session.id',
+task_record = {
+  session: 'task_session.id',
   data: 'json',
 };
 ```
